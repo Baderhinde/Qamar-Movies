@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>مكتبة أفلام قمر</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #1f1c2c, #5e5473);
+      color: white;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: rgba(15, 12, 30, 0.95);
+      padding: 20px 10px;
+      box-shadow: inset -1px 0 8px #00000066;
+      overflow-y: auto;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      color: #d8b4fe;
+      text-align: center;
+      margin-bottom: 20px;
+      text-shadow: 0 0 8px #7c3aedaa;
+    }
+
+    .category {
+      display: block;
+      text-align: center;
+      padding: 14px;
+      margin-bottom: 10px;
+      background: #7b2cbf;
+      border-radius: 10px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .category:hover {
+      background: #a569bd;
+    }
+
+    .content {
+      flex: 1;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .content h2 {
+      color: #ffd700;
+      margin-bottom: 20px;
+    }
+
+    .movies {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .movie {
+      width: 300px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px #00000066;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .category {
+        width: 120px;
+        margin: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>أقسام السينما</h2>
+    <div class="category" onclick="showCategory('foreign')">🎬 سينما أجنبية</div>
+    <div class="category" onclick="showCategory('arabic')">🎞️ سينما عربية</div>
+    <div class="category" onclick="showCategory('family')">👨‍👩‍👧‍👦 سينما العائلة</div>
+  </div>
+
+  <div class="content">
+    <h2 id="section-title">اختر تصنيفاً من القائمة</h2>
+
+    <div id="foreign" class="movies hidden">
+      <div class="movie">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID1" allowfullscreen></iframe>
+        <p>فيلم أجنبي 1</p>
+      </div>
+      <div class="movie">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID2" allowfullscreen></iframe>
+        <p>فيلم أجنبي 2</p>
+      </div>
+    </div>
+
+    <div id="arabic" class="movies hidden">
+      <div class="movie">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID3" allowfullscreen></iframe>
+        <p>فيلم عربي 1</p>
+      </div>
+      <div class="movie">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID4" allowfullscreen></iframe>
+        <p>فيلم عربي 2</p>
+      </div>
+    </div>
+
+    <div id="family" class="movies hidden">
+      <div class="movie">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID5" allowfullscreen></iframe>
+        <p>فيلم عائلي 1</p>
+      </div>
+      <div class="movie">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID6" allowfullscreen></iframe>
+        <p>فيلم عائلي 2</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showCategory(category) {
+      document.getElementById("section-title").innerText = 
+        category === 'foreign' ? "🎬 أفلام سينما أجنبية" :
+        category === 'arabic' ? "🎞️ أفلام سينما عربية" :
+        "👨‍👩‍👧‍👦 أفلام العائلة";
+
+      document.querySelectorAll(".movies").forEach(div => div.classList.add("hidden"));
+      document.getElementById(category).classList.remove("hidden");
+    }
+  </script>
+
+</body>
+</html>
